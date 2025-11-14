@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 export default function InterviewResources() {
   const [activeTab, setActiveTab] = useState("companies");
+  const [query, setQuery] = useState("");
+  const [showOnlyHard, setShowOnlyHard] = useState(false);
 
   const companyInterviews = [
+    {
+      company: "Uber",
+      type: "OA + Interview Prep",
+      link: "https://docs.google.com/document/d/1FKMeLaXMIX8Dn4REqH69dUZBtytq3abtFbNacUlygjE/edit?tab=t.0",
+    },
     {
       company: "Amazon",
       type: "OA + Interview Prep",
@@ -15,9 +22,9 @@ export default function InterviewResources() {
       link: "https://docs.google.com/document/d/11TooT7jZmrKppxGYKgDzpfslE8S_FYTWOhX3GKLm06g/edit",
     },
     {
-      company: "Samsung",
+      company: "JustPay",
       type: "OA + Interview Prep",
-      link: "https://docs.google.com/document/d/1i4g-aIjGp91FZ-pOQ0O3GUAwriHs58jKIFSUhqnL4Oo/edit?tab=t.0",
+      link: "https://docs.google.com/document/d/1t4Jjt2UC0KPe44KD7Jv8QCGDddU9yxR1M8LK7Mc_HT8/edit?tab=t.0",
     },
     {
       company: "Cisco",
@@ -29,23 +36,22 @@ export default function InterviewResources() {
       type: "OA + Interview Prep",
       link: "https://docs.google.com/document/d/14c4Qx5G-qSe-1EzMXYAeUAcvsRJVfQURjwkxGK7QxD8/edit",
     },
-
     {
       company: "Google",
       type: "OA + Interview Prep",
       link: "https://docs.google.com/document/d/1t4Jjt2UC0KPe44KD7Jv8QCGDddU9yxR1M8LK7Mc_HT8/edit?tab=t.0",
     },
     {
-      company: "JustPay",
+      company: "Samsung",
       type: "OA + Interview Prep",
-      link: "https://docs.google.com/document/d/1t4Jjt2UC0KPe44KD7Jv8QCGDddU9yxR1M8LK7Mc_HT8/edit?tab=t.0",
+      link: "https://docs.google.com/document/d/1i4g-aIjGp91FZ-pOQ0O3GUAwriHs58jKIFSUhqnL4Oo/edit?tab=t.0",
     },
   ];
 
   const competitiveProgramming = [
     {
       title: "Competitive Programming Course",
-      link: "#",
+      link: "https://docs.google.com/document/d/1K4spCUSfy0lu2pCDL6kr9IRLRpU2H-BBE0NRVV8yme4/edit",
       description: "Complete DSA and problem-solving course",
     },
   ];
@@ -55,8 +61,7 @@ export default function InterviewResources() {
       category: "SystemDesign",
       problems: [
         {
-          title:
-            " How will you design a Hotel booking application like AirBnB?",
+          title: "How will you design a Hotel booking application like AirBnB?",
           difficulty: "Easy",
           link: "https://lnkd.in/gk-T7rGy",
         },
@@ -86,13 +91,11 @@ export default function InterviewResources() {
           difficulty: "Medium",
           link: "https://lnkd.in/ghmRS6JZ",
         },
-
         {
           title: "How will you design a URL shortener like bit.ly or goo.gl?",
           difficulty: "Medium",
           link: "https://lnkd.in/gXEcvQEX",
         },
-
         {
           title: "How will you design an ATM?",
           difficulty: "Medium",
@@ -158,6 +161,59 @@ export default function InterviewResources() {
     }
   };
 
+  // filtering helpers
+  const filteredCompanies = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return companyInterviews.filter((c) =>
+      `${c.company} ${c.type}`.toLowerCase().includes(q)
+    );
+  }, [query]);
+
+  const filteredProblems = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return importantProblems.map((cat) => ({
+      ...cat,
+      problems: cat.problems.filter((p) => {
+        const matchQuery = `${p.title} ${p.difficulty}`
+          .toLowerCase()
+          .includes(q);
+        const matchHard = showOnlyHard
+          ? p.difficulty.toLowerCase() === "hard"
+          : true;
+        return matchQuery && matchHard;
+      }),
+    }));
+  }, [query, showOnlyHard]);
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // simple visual feedback could be added — using alert for brevity
+      alert("Link copied to clipboard");
+    } catch (err) {
+      console.error(err);
+      alert("Unable to copy link — please copy manually.");
+    }
+  };
+
+  // small CSV export for company links
+  const exportCompaniesCsv = () => {
+    const rows = [
+      "Company,Type,Link",
+      ...companyInterviews.map(
+        (c) => `\"${c.company}\",\"${c.type}\",\"${c.link}\"`
+      ),
+    ];
+    const csv = rows.join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "company_interviews.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="max-w-7xl mx-auto p-6 bg-gray-50 min-h-screen">
       {/* Header */}
@@ -171,91 +227,179 @@ export default function InterviewResources() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex flex-wrap justify-center mb-8 bg-white rounded-lg shadow-lg p-2">
+      <div className="flex flex-wrap justify-center mb-6 bg-white rounded-lg shadow-lg p-2">
         <button
           onClick={() => setActiveTab("companies")}
-          className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
             activeTab === "companies"
               ? "bg-blue-500 text-white shadow-md"
               : "text-gray-600 hover:bg-gray-100"
           }`}
+          aria-pressed={activeTab === "companies"}
         >
           🏢 Company Prep
         </button>
         <button
           onClick={() => setActiveTab("competitive")}
-          className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
             activeTab === "competitive"
               ? "bg-green-500 text-white shadow-md"
               : "text-gray-600 hover:bg-gray-100"
           }`}
+          aria-pressed={activeTab === "competitive"}
         >
           🏆 Competitive Programming
         </button>
         <button
           onClick={() => setActiveTab("leetcode")}
-          className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
             activeTab === "leetcode"
               ? "bg-orange-500 text-white shadow-md"
               : "text-gray-600 hover:bg-gray-100"
           }`}
+          aria-pressed={activeTab === "leetcode"}
         >
           💻 System Design Interview Questions
         </button>
         <button
           onClick={() => setActiveTab("system-design")}
-          className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+          className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
             activeTab === "system-design"
               ? "bg-purple-500 text-white shadow-md"
               : "text-gray-600 hover:bg-gray-100"
           }`}
+          aria-pressed={activeTab === "system-design"}
         >
           🏗️ System Design
         </button>
       </div>
 
+      {/* Search + utilities */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <div className="flex items-center gap-3 w-full md:w-1/2">
+          <label htmlFor="search" className="sr-only">
+            Search resources
+          </label>
+          <input
+            id="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search companies, problems, or difficulty..."
+            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            aria-label="Search resources"
+          />
+          <button
+            onClick={() => {
+              setQuery("");
+              setShowOnlyHard(false);
+            }}
+            className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm"
+          >
+            Reset
+          </button>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <label className="inline-flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={showOnlyHard}
+              onChange={(e) => setShowOnlyHard(e.target.checked)}
+              className="rounded text-red-600"
+            />
+            <span className="text-sm text-gray-700">
+              Show only Hard problems
+            </span>
+          </label>
+
+          <button
+            onClick={exportCompaniesCsv}
+            className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm"
+            aria-label="Export company list as CSV"
+          >
+            Export CSV
+          </button>
+        </div>
+      </div>
+
       {/* Company Interview Prep */}
       {activeTab === "companies" && (
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="mr-3">🏢</span>
-            Company-wise Interview Preparation
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {companyInterviews.map((item, index) => (
-              <div
-                key={index}
-                className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-lg text-gray-800">
-                    {item.company}
-                  </h3>
-                  <span className="text-blue-500">🔗</span>
-                </div>
-                <p className="text-gray-600 text-sm mb-3">{item.type}</p>
-                <a
-                  href={item.link}
-                  className="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-200"
-                >
-                  <span className="mr-2">📋</span>
-                  View Prep Material
-                </a>
-              </div>
-            ))}
+        <section
+          className="bg-white rounded-lg shadow-lg p-6"
+          aria-labelledby="company-heading"
+        >
+          <div className="flex items-start justify-between mb-6">
+            <h2
+              id="company-heading"
+              className="text-2xl font-bold text-gray-800 flex items-center gap-3"
+            >
+              <span>🏢</span> Company-wise Interview Preparation
+            </h2>
+            <p className="text-sm text-gray-500">
+              Found: {filteredCompanies.length}
+            </p>
           </div>
-        </div>
+
+          {filteredCompanies.length === 0 ? (
+            <p className="text-gray-600">No companies match your search.</p>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredCompanies.map((item, index) => (
+                <article
+                  key={`${item.company}-${index}`}
+                  className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-semibold text-lg text-gray-800">
+                      {item.company}
+                    </h3>
+                    <span className="text-blue-500" aria-hidden>
+                      🔗
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-3">{item.type}</p>
+
+                  <div className="flex gap-2">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm transition-colors duration-200"
+                    >
+                      <span className="mr-2">📋</span>
+                      View Prep Material
+                    </a>
+
+                    <button
+                      onClick={() => copyToClipboard(item.link)}
+                      className="px-3 py-2 rounded-lg border border-gray-200 text-sm hover:bg-gray-50"
+                      aria-label={`Copy link for ${item.company}`}
+                    >
+                      Copy link
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
       )}
 
       {/* Competitive Programming */}
       {activeTab === "competitive" && (
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="mr-3">🏆</span>
-            Competitive Programming Course
+        <section
+          className="bg-white rounded-lg shadow-lg p-6"
+          aria-labelledby="competitive-heading"
+        >
+          <h2
+            id="competitive-heading"
+            className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3"
+          >
+            <span>🏆</span> Competitive Programming Course
           </h2>
+
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-green-800 mb-4">
+            <h3 className="text-xl font-semibold text-green-800 mb-2">
               Complete DSA Mastery
             </h3>
             <p className="text-gray-700 mb-4">
@@ -263,33 +407,60 @@ export default function InterviewResources() {
               competitive programming course. Perfect for coding interviews and
               competitive contests.
             </p>
-            <a
-              href="#"
-              className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
-            >
-              <span className="mr-2">🚀</span>
-              Start Learning
-            </a>
+
+            {competitiveProgramming.map((c, i) => (
+              <div
+                key={i}
+                className="flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+              >
+                <div>
+                  <h4 className="font-semibold">{c.title}</h4>
+                  <p className="text-sm text-gray-600">{c.description}</p>
+                </div>
+                <div className="flex gap-2">
+                  <a
+                    href={c.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm"
+                  >
+                    🚀 Start Learning
+                  </a>
+                  <button
+                    onClick={() => copyToClipboard(c.link)}
+                    className="px-3 py-2 rounded-lg border border-gray-200 text-sm"
+                  >
+                    Copy link
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* LeetCode Problems */}
       {activeTab === "leetcode" && (
-        <div className="space-y-6">
-          {importantProblems.map((category, categoryIndex) => (
+        <section className="space-y-6">
+          {filteredProblems.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
               className="bg-white rounded-lg shadow-lg p-6"
             >
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                <span className="mr-3">💻</span>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-3">
+                <span>💻</span>
                 {category.category}
               </h2>
+
               <div className="space-y-3">
+                {category.problems.length === 0 && (
+                  <p className="text-gray-600">
+                    No problems match your filters.
+                  </p>
+                )}
                 {category.problems.map((problem, problemIndex) => (
                   <div
-                    key={problemIndex}
+                    key={`${problem.title}-${problemIndex}`}
                     className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors duration-200"
                   >
                     <div className="flex items-center justify-between mb-2">
@@ -304,27 +475,37 @@ export default function InterviewResources() {
                         {problem.difficulty}
                       </span>
                     </div>
-                    <a
-                      href={problem.link}
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium underline"
-                    >
-                      View Solution →
-                    </a>
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={problem.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium underline"
+                      >
+                        View Solution →
+                      </a>
+                      <button
+                        onClick={() => copyToClipboard(problem.link)}
+                        className="text-sm px-2 py-1 rounded-md border border-gray-200"
+                      >
+                        Copy link
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-        </div>
+        </section>
       )}
 
       {/* System Design */}
       {activeTab === "system-design" && (
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="mr-3">🏗️</span>
-            System Design Resources
+        <section className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <span>🏗️</span> System Design Resources
           </h2>
+
           <div className="space-y-4">
             {systemDesignResources.map((resource, index) => (
               <div
@@ -341,40 +522,36 @@ export default function InterviewResources() {
                 </div>
                 <a
                   href={resource.link}
-                  className="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors duration-200"
                 >
-                  <span className="mr-2">🔗</span>
-                  View Discussion
+                  🔗 View Discussion
                 </a>
               </div>
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* Footer */}
-      <div className="text-center mt-12 p-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white">
+      <footer className="text-center mt-12 p-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white">
         <h3 className="text-2xl font-bold mb-2">🎯 DESIGNS</h3>
         <p className="text-blue-100">
           Master your interview skills with comprehensive preparation materials
         </p>
         <div className="flex justify-center space-x-6 mt-6 text-sm">
           <span className="flex items-center">
-            <span className="mr-2">✅</span>
-            500+ Problems
+            <span className="mr-2">✅</span>500+ Problems
           </span>
           <span className="flex items-center">
-            <span className="mr-2">🏢</span>
-            Top Companies
+            <span className="mr-2">🏢</span>Top Companies
           </span>
           <span className="flex items-center">
-            <span className="mr-2">🏗️</span>
-            System Design
+            <span className="mr-2">🏗️</span>System Design
           </span>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
