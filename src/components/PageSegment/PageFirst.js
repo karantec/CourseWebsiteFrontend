@@ -39,7 +39,7 @@ const CourseInfo = () => {
             </div>
 
             <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-2xl font-bold py-4 px-8 rounded-2xl mb-6 shadow-lg">
-              SEP
+              NOV
             </div>
 
             <div className="text-2xl font-semibold text-gray-800 mb-8 italic">
@@ -52,7 +52,7 @@ const CourseInfo = () => {
                 🎯 851 hour course link for hard level DSA + OA + CP
               </div>
               <a
-                href="https://docs.google.com/document/d/1ox7meTB0RfuO7VQ7EUc7prKVimZetas0Y2mn4eF9XxE/edit?tab=t.0"
+                href="https://docs.google.com/document/d/1Ik0Y0gtpwt-rCSzfdU2SdcwxYryDQ-gUkjpDyNonmZg/edit?tab=t.0"
                 className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-md"
               >
                 Access Course Link
@@ -76,6 +76,18 @@ const CourseInfo = () => {
                   className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors shadow-md"
                 >
                   Link2
+                </a>
+                <a
+                  href="https://x.com/KaranKu37565867"
+                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-colors shadow-md"
+                >
+                  Link3
+                </a>
+                <a
+                  href="https://www.instagram.com/desiqna_official/"
+                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-colors shadow-md"
+                >
+                  Link4
                 </a>
               </div>
             </div>
@@ -125,8 +137,8 @@ const CourseInfo = () => {
         <div className="text-center">
           <div className="bg-gradient-to-r from-orange-400 to-pink-500 text-white rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-transform duration-300">
             <div className="text-xl font-semibold mb-4">
-              📊 So accordingly report to Kumar K when you achieve the milestone
-              🤩🔥💪🏻💪🏻 so that we can give you prizes 🤩🤩
+              📊 So accordingly report to Kumar K (+91 88793 55057) when you
+              achieve the milestone 🤩🔥💪🏻💪🏻 so that we can give you prizes 🤩🤩
             </div>
             <div className="flex justify-center space-x-4 text-3xl">
               <span className="animate-bounce">🎯</span>

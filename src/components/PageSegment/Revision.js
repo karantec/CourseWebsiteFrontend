@@ -15,26 +15,34 @@ const RevisionTable = () => {
 
   const tableData = [
     {
-      title: "How to structure the product in Interview",
-      action: "Read this article.",
+      title: "How to explain the project in Interview",
+
+      action: "Read this article",
       link: "https://docs.google.com/document/d/1TtsjlKdSGZ0fM9JgbdBkv_QtPNZJKhTagL6MYpBWSCw/edit",
       type: "article",
     },
     {
-      title: "Resume Guidance",
+      title: "Resume Guide",
       action: "Read this article and watch the video",
       link: "https://docs.google.com/document/d/1YpcIhEoVBAnV27Yxhe4mfjSrepfOeIkBFYd05kuU-yA/edit?tab=t.0",
       type: "article-video",
     },
     {
-      title: "LinkedIn Guidance",
-      action: "Read this article.",
+      title: "LinkedIn Guide",
+      action: "Read this article",
       link: "https://docs.google.com/document/d/13ql7XU9MMTX5tEkK_cv9P0cj6Bc86LxhmpfVYl6K61Q/edit?tab=t.0",
+      type: "article",
+    },
+
+    {
+      title: "Rules to get Job Referrals from our Cohort",
+      action: "Read this article",
+      link: "https://docs.google.com/document/d/1Sh11g-fxruouymnoFg5T9wK2iCuTo155k5RhPSMWOLU/edit?tab=t.0",
       type: "article",
     },
     {
       title: "Referral Document",
-      action: "Read this article.",
+      action: "Read this article",
       link: "https://docs.google.com/document/d/1wbNuCxGoh4CzljkFD_kKHqWhRM5dXEK7B9a8S8Zy-eQ/edit?usp=sharing",
       type: "article",
     },
@@ -45,8 +53,8 @@ const RevisionTable = () => {
       type: "video",
     },
     {
-      title: "SDE Intern @ TT(OB&S)",
-      action: "Read the article.",
+      title: "SDE Intern @ITJOBXS",
+      action: "Read the article",
       link: "https://docs.google.com/document/d/1p6cYauYBEiDzMMe2Y3D1N6r98BgpxP0LIiY_R1-LxOw/edit?usp=sharing",
       type: "article",
     },
@@ -70,13 +78,13 @@ const RevisionTable = () => {
     },
     {
       title: "CS Fundamentals Course",
-      action: "Watch the videos and articles.",
+      action: "Watch the videos and articles",
       link: "https://docs.google.com/document/d/1XlU6gHf-g_N_SChtS4A9zgzIRW6D1fbdpaDs_AiTxPI/edit?usp=sharing",
       type: "course",
     },
     {
-      title: "60 hour Off Campus course",
-      action: "Watch all the videos and read all the articles.",
+      title: "51 hour Off Campus course",
+      action: "Watch all the videos and read all the articles",
       link: "https://docs.google.com/document/d/11t52uRJE8r9Vq8rR_Tq79GYj1iHU7X-LviHbnJPselg/edit?tab=t.0",
       type: "course",
     },
@@ -85,12 +93,9 @@ const RevisionTable = () => {
   const githubProfiles = [
     {
       url: "https://github.com/om851",
-      message:
-        "For any query: message assistant mentors :- 1)Abhimany(+91 76545 36127)",
     },
     {
       url: "https://github.com/Anton003",
-      message: "n)Bhanuja(+91 81359 51869)",
     },
   ];
 
@@ -131,48 +136,21 @@ const RevisionTable = () => {
         <div className="text-center mb-8">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 p-8 mb-6">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-              📋 Revision Document
+              📋This is how you maintain Revision Document
             </h1>
-            <p className="text-xl text-gray-600">
-              This is how you maintain revision doc
-            </p>
+            <p className="text-xl text-gray-600"></p>
             <div className="mt-4">
               <a
                 href="https://docs.google.com/document/d/1OBJgMnOeVFjVrwy3jmaTinkT9xZaINADN_lhLhlkTEI/edit"
                 className="inline-block bg-gradient-to-r from-orange-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
               >
-                🎯 Desi QnA Earn Cash Back Program!
+                🎯 Desi QnA Earn Cash Back Program🎉🥳
               </a>
             </div>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-8">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/50">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold text-gray-800">
-                Progress Tracker
-              </h3>
-              <span className="text-2xl font-bold text-purple-600">
-                {completedItems.size}/{tableData.length}
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-3">
-              <div
-                className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500"
-                style={{
-                  width: `${(completedItems.size / tableData.length) * 100}%`,
-                }}
-              ></div>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">
-              {completedItems.size === tableData.length
-                ? "🎉 All tasks completed!"
-                : `${tableData.length - completedItems.size} items remaining`}
-            </p>
-          </div>
-        </div>
 
         {/* Main Table */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
@@ -268,7 +246,7 @@ const RevisionTable = () => {
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
               <span className="text-3xl mr-3">💻</span>
-              GitHub Profiles & Support
+              GitHub Profiles
             </h2>
 
             <div className="space-y-6">
@@ -289,12 +267,6 @@ const RevisionTable = () => {
                       >
                         {profile.url}
                       </a>
-                      <div className="bg-yellow-400/20 rounded-lg p-3">
-                        <p className="text-yellow-200 text-sm">
-                          <span className="font-semibold">💬 Support:</span>{" "}
-                          {profile.message}
-                        </p>
-                      </div>
                     </div>
                   ))}
                 </div>
@@ -308,12 +280,12 @@ const RevisionTable = () => {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <p className="font-semibold">Abhimany</p>
-                    <p className="text-sm">+91 76545 36127</p>
+                    <p className="font-semibold">Abhimanyu</p>
+                    <p className="text-sm"> 7654536127</p>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <p className="font-semibold">Bhanuja</p>
-                    <p className="text-sm">+91 81359 51869</p>
+                    <p className="font-semibold">Bhargab</p>
+                    <p className="text-sm"> 8135951869</p>
                   </div>
                 </div>
               </div>

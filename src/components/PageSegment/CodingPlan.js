@@ -20,12 +20,12 @@ const DSAStepByStepPlan = () => {
   const steps = [
     {
       title: "Baby Step",
-      description: "You are new to coding and know nothing",
+      description: "We Assume, You are new to coding and know nothing",
       note: "Please write code for all the questions and videos taught in the course; it is not a movie; don't just watch video; write code for it as well; run and test in the compiler",
       items: [
         {
           type: "Baby Step",
-          task: "First, do this.",
+          task: "First, do this",
         },
         {
           type: "Python",
@@ -46,7 +46,7 @@ const DSAStepByStepPlan = () => {
     },
     {
       title: "Step 0",
-      description: "Second, do this.",
+      description: "Second, do this",
       items: [
         {
           type: "Python",
@@ -67,7 +67,7 @@ const DSAStepByStepPlan = () => {
     },
     {
       title: "Step1",
-      description: "Third, do this.",
+      description: "Third, do this",
       items: [
         {
           type: "Python",
@@ -89,7 +89,7 @@ const DSAStepByStepPlan = () => {
 
     {
       title: "Step2",
-      description: "Fourth.",
+      description: "Fourth",
       items: [
         {
           type: "Python",
@@ -111,7 +111,7 @@ const DSAStepByStepPlan = () => {
 
     {
       title: "Step3",
-      description: "Fifth.",
+      description: "Fifth",
       items: [
         {
           type: "Question1",
@@ -127,30 +127,8 @@ const DSAStepByStepPlan = () => {
     },
 
     {
-      title: "Step2",
-      description: "Fourth.",
-      items: [
-        {
-          type: "Python",
-          task: "Link",
-          link: "https://www.geeksforgeeks.org/python-dictionary/",
-        },
-        {
-          type: "C++",
-          task: "Link",
-          link: "https://www.hackerearth.com/practice/notes/standard-template-library/",
-        },
-        {
-          type: "Java",
-          task: "Link",
-          link: "https://www.youtube.com/watch?v=rzA7UJ-hQn4&ab_channel=AnujBhaiya",
-        },
-      ],
-    },
-
-    {
       title: "Step4",
-      description: "Pre-Advance DSA",
+      description: "Pre-Requisites for DSA",
       items: [
         {
           type: "Pro Plan Prerequisite",
@@ -198,7 +176,7 @@ const DSAStepByStepPlan = () => {
               <p className="font-semibold text-lg">
                 Select any one (C++/Java/Py) and start doing the course :-&gt;
                 Baby step -&gt; step0 -&gt; step1 -&gt; step2 -&gt; step3 -&gt;
-                step4 -&gt; step5 -&gt; PRO DSA Plan!
+                step4 -&gt; PRO DSA Plan!
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
@@ -227,33 +205,6 @@ const DSAStepByStepPlan = () => {
         </div>
 
         {/* Progress Overview */}
-        <div className="mb-8">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/50">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                📊 Your Progress
-              </h3>
-              <span className="text-3xl font-bold text-red-600">
-                {completedCount}/{totalItems}
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-4">
-              <div
-                className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 h-4 rounded-full transition-all duration-500"
-                style={{
-                  width: `${
-                    totalItems > 0 ? (completedCount / totalItems) * 100 : 0
-                  }%`,
-                }}
-              ></div>
-            </div>
-            <p className="text-gray-600 mt-2 text-center">
-              {completedCount === totalItems && totalItems > 0
-                ? "🎉 Congratulations! You've completed all steps!"
-                : `${totalItems - completedCount} items remaining`}
-            </p>
-          </div>
-        </div>
 
         {/* Steps */}
         <div className="space-y-8">
@@ -397,29 +348,7 @@ const DSAStepByStepPlan = () => {
 
         {/* Next Steps Preview */}
         <div className="mt-8">
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-3xl p-8 shadow-2xl">
-            <h3 className="text-2xl font-bold mb-4 text-center">
-              🎯 What's Next?
-            </h3>
-            <div className="grid md:grid-cols-4 gap-4 text-center">
-              {["Step 2", "Step 3", "Step 4", "Step 5", "PRO DSA Plan"].map(
-                (step, index) => (
-                  <div
-                    key={index}
-                    className="bg-white/20 backdrop-blur-sm rounded-xl p-4"
-                  >
-                    <div className="text-2xl mb-2">
-                      {index < 4 ? "📚" : "🏆"}
-                    </div>
-                    <div className="font-semibold">{step}</div>
-                  </div>
-                )
-              )}
-            </div>
-            <p className="text-center mt-6 text-lg">
-              Complete current steps to unlock advanced DSA concepts!
-            </p>
-          </div>
+          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-3xl p-8 shadow-2xl"></div>
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@ const Home = () => {
   const chapters = [
     {
       id: "course-overview",
-      title: "Chapter 1: Course Overview & Introduction",
+      title: "Chapter 1: 851 Hour Course Link + Grand Prizes",
       icon: <BookOpen className="w-5 h-5" />,
       description:
         "Get started with your learning journey and understand the course structure",
@@ -43,32 +43,33 @@ const Home = () => {
     },
     {
       id: "revision-fundamentals",
-      title: "Chapter 2: Revision Fundamentals",
+      title: "Chapter 2: Linkedin + Resume +Job Referral Support",
       icon: <FileText className="w-5 h-5" />,
       description: "Essential revision techniques and study materials",
       component: <RevisionTable />,
     },
     {
+      id: "coding-practice",
+      title: "Chapter 5: Beginner DSA Plan",
+      icon: <Code className="w-5 h-5" />,
+      description: "Structured approach to coding problems and solutions",
+      component: <DSAStepByStepPlan />,
+    },
+    {
       id: "dsa-study-plan",
-      title: "Chapter 3: Data Structures & Algorithms Study Plan",
+      title: "Chapter 3: Beginner DSA Plan",
       icon: <Map className="w-5 h-5" />,
       description: "Comprehensive study plan for mastering DSA concepts",
       component: <DSAStudyPlan />,
     },
     {
       id: "data-structures",
-      title: "Chapter 4: Data Structures Reference",
+      title: "Chapter 4: Pro DSA Plan",
       icon: <Database className="w-5 h-5" />,
       description: "Complete reference guide for all data structures",
       component: <DataStructuresTable />,
     },
-    {
-      id: "coding-practice",
-      title: "Chapter 5: Step-by-Step Coding Practice",
-      icon: <Code className="w-5 h-5" />,
-      description: "Structured approach to coding problems and solutions",
-      component: <DSAStepByStepPlan />,
-    },
+
     {
       id: "interview-preparation",
       title: "Chapter 6: Technical Interview Preparation",
@@ -98,14 +99,20 @@ const Home = () => {
       <div className="text-center mb-10">
         <div className="flex items-center justify-center mb-4">
           <BookOpen className="w-12 h-12 text-blue-600 mr-3" />
-          <h1 className="text-4xl font-bold text-gray-800">
-            Kumar K Main Book
+          <h1 className="text-4xl font-bold uppercase text-gray-800">
+            Main course navigation website
           </h1>
         </div>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          A comprehensive book-style guide covering everything from fundamentals
-          to advanced topics in programming, data structures, and interview
-          preparation.
+          A comprehensive guide covering everything from fundamentals to
+          advanced topics in programming, DSA and interview preparation. <br />
+          <span className="text-red-600 font-bold">
+            {" "}
+            (The Course; Training and Mentoring of this program are the most
+            efficient in the whole country ; if you work daily exactly as per
+            personalized schedule given by Kumar K in 1-1 Mentoring with faith
+            in God no force in this world can stop you)
+          </span>
         </p>
       </div>
 
