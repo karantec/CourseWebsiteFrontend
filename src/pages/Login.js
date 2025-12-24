@@ -1,21 +1,54 @@
+// src/pages/Login.jsx
 import React, { useEffect, useState } from "react";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState("");
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const handleGoogleLogin = () => {
+    if (!selectedMonth) {
+      setError("⚠️ Please select your month before continuing");
+      return;
+    }
+
     setIsLoading(true);
-    // Simulate loading state
-    setTimeout(() => {
-      window.location.href = "http://localhost:5000/auth/google";
-    }, 500);
+    setError("");
+    // Redirect to backend which stores month in session then starts OAuth
+    window.location.href = `https://coursewebsite-1.onrender.com/auth/google?month=${encodeURIComponent(
+      selectedMonth
+    )}`;
   };
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("error") === "unauthorized") {
+    const err = params.get("error");
+
+    if (err === "unauthorized") {
       setError("❌ You are not authorized. Contact admin.");
+    } else if (err === "select_month") {
+      setError("⚠️ Please select a month and try again.");
+    } else if (err === "fake_user") {
+      setError(
+        "❌ You are not registered for this month. If you think this is a mistake, contact the admin."
+      );
+    } else if (err === "server_error") {
+      setError("⚠️ Something went wrong on the server. Try again later.");
     }
   }, []);
 
@@ -60,13 +93,44 @@ const Login = () => {
           {error && (
             <div className="mb-6 p-4 bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-2xl animate-shake">
               <p className="text-red-200 text-center font-medium">{error}</p>
+              <p className="text-sm text-center mt-2 text-purple-100">
+                Need help?{" "}
+                <a href="mailto:admin@example.com" className="underline">
+                  Contact admin
+                </a>
+              </p>
             </div>
           )}
+
+          {/* Month selection dropdown */}
+          <div className="mb-6">
+            <label className="block text-white text-sm font-semibold mb-3">
+              Select Your Month
+            </label>
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="w-full bg-white/20 backdrop-blur-sm text-black font-bold border border-white/30 rounded-2xl py-3 px-4 focus:outline-none focus:ring-4 focus:ring-purple-300 focus:border-purple-400 transition-all duration-300 appearance-none cursor-pointer"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 1rem center",
+                backgroundSize: "1.5rem",
+              }}
+            >
+              <option value="">Select a month...</option>
+              {months.map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* Google login button */}
           <button
             onClick={handleGoogleLogin}
-            disabled={isLoading}
+            disabled={isLoading || !selectedMonth}
             className="w-full bg-white hover:bg-gray-50 text-gray-800 font-semibold py-4 px-6 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-purple-300 disabled:opacity-70 disabled:cursor-not-allowed group"
           >
             <div className="flex items-center justify-center space-x-3">
@@ -119,12 +183,11 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Additional decorative elements */}
+        {/* Decorative */}
         <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 blur-xl"></div>
         <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 blur-xl"></div>
       </div>
 
-      {/* Custom animations */}
       <style jsx>{`
         @keyframes shake {
           0%,

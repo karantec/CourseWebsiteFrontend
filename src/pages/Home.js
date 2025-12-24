@@ -21,9 +21,83 @@ import FullStackDevelopment from "../components/PageSegment/PageSecond";
 import InterviewResources from "../components/PageSegment/PageThird";
 import DataStructuresTable from "../components/PageSegment/PageFourth";
 import DSAStudyPlan from "../components/PageSegment/DSAPlan";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [expandedChapters, setExpandedChapters] = useState({});
+  const [countdown, setCountdown] = useState(20);
+  const timeoutRef = React.useRef(null);
+  const countdownIntervalRef = React.useRef(null);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // Add your logout logic here
+    // console.log("User logged out");
+    // alert("You have been logged out due to inactivity");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const resetTimer = () => {
+    // Clear existing timeout and countdown
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (countdownIntervalRef.current) {
+      clearInterval(countdownIntervalRef.current);
+    }
+
+    // Reset countdown to 20 seconds
+    setCountdown(20);
+
+    // Start countdown interval
+    countdownIntervalRef.current = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdownIntervalRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Set new timeout for auto-logout
+    timeoutRef.current = setTimeout(() => {
+      handleLogout();
+    }, 20000);
+  };
+
+  React.useEffect(() => {
+    // Events that indicate user activity
+    const events = [
+      "mousedown",
+      "mousemove",
+      "keypress",
+      "scroll",
+      "touchstart",
+      "click",
+    ];
+
+    // Add event listeners
+    events.forEach((event) => {
+      document.addEventListener(event, resetTimer);
+    });
+
+    // Initialize timer
+    resetTimer();
+
+    // Cleanup
+    return () => {
+      events.forEach((event) => {
+        document.removeEventListener(event, resetTimer);
+      });
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (countdownIntervalRef.current) {
+        clearInterval(countdownIntervalRef.current);
+      }
+    };
+  }, []);
 
   const toggleChapter = (chapterId) => {
     setExpandedChapters((prev) => ({
@@ -50,43 +124,36 @@ const Home = () => {
     },
     {
       id: "coding-practice",
-      title: "Chapter 5: Beginner DSA Plan",
+      title: "Chapter 3: Beginner DSA Plan",
       icon: <Code className="w-5 h-5" />,
       description: "Structured approach to coding problems and solutions",
       component: <DSAStepByStepPlan />,
     },
     {
       id: "dsa-study-plan",
-      title: "Chapter 3: Beginner DSA Plan",
+      title: "Chapter 4: Pro DSA Plan",
       icon: <Map className="w-5 h-5" />,
       description: "Comprehensive study plan for mastering DSA concepts",
       component: <DSAStudyPlan />,
     },
-    {
-      id: "data-structures",
-      title: "Chapter 4: Pro DSA Plan",
-      icon: <Database className="w-5 h-5" />,
-      description: "Complete reference guide for all data structures",
-      component: <DataStructuresTable />,
-    },
 
     {
       id: "interview-preparation",
-      title: "Chapter 6: Technical Interview Preparation",
+      title: "Chapter 5: Technical Interview Preparation",
       icon: <Brain className="w-5 h-5" />,
       description: "Master the art of technical interviews",
       component: <InterviewPrep />,
     },
     {
       id: "fullstack-development",
-      title: "Chapter 7: Full Stack Development Guide",
+      title: "Chapter 6: Full Stack Development With System Design",
       icon: <Layers className="w-5 h-5" />,
       description: "Complete guide to full stack development technologies",
       component: <FullStackDevelopment />,
     },
     {
       id: "interview-resources",
-      title: "Chapter 8: Interview Resources & Materials",
+      title: "Chapter 7: Interview Resources & Materials",
       icon: <Users className="w-5 h-5" />,
       description: "Additional resources and materials for interview success",
       component: <InterviewResources />,
@@ -95,6 +162,15 @@ const Home = () => {
 
   return (
     <div className="max-w-8xl mx-auto p-6 bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+      {/* Auto-logout Warning Banner */}
+      {countdown <= 10 && (
+        <div className="fixed top-4 right-4 bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse">
+          <p className="font-semibold">
+            ⚠️ Inactive! Logging out in {countdown} seconds...
+          </p>
+        </div>
+      )}
+
       {/* Book Header */}
       <div className="text-center mb-10">
         <div className="flex items-center justify-center mb-4">
@@ -186,6 +262,30 @@ const Home = () => {
       <div className="text-center mt-12 py-8 border-t border-gray-200">
         <p className="text-gray-600">
           📚 Happy Learning! Remember to practice consistently and stay curious.
+        </p>
+
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="mt-6 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center mx-auto"
+        >
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
+          Logout
+        </button>
+        <p className="text-sm text-gray-500 mt-3">
+          Auto-logout in {countdown} seconds of inactivity
         </p>
       </div>
     </div>

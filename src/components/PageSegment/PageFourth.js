@@ -144,7 +144,7 @@ const StudyPlanTable = () => {
     },
     {
       id: 7,
-      topic: "Hashing Miscellaneous",
+      topic: "",
       subtopic: "",
       steps: [
         {
