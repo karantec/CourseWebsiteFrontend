@@ -34,7 +34,7 @@ const Home = () => {
     // console.log("User logged out");
     // alert("You have been logged out due to inactivity");
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
 
   const resetTimer = () => {

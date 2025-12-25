@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://coursewebsite-1.onrender.com",
+  baseURL: "http://localhost:5000",
   withCredentials: true, // important: include session cookie in requests
   // timeout: 10000,
 });

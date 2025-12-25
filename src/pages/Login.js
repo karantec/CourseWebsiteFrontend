@@ -30,7 +30,7 @@ const Login = () => {
     setIsLoading(true);
     setError("");
     // Redirect to backend which stores month in session then starts OAuth
-    window.location.href = `https://coursewebsite-1.onrender.com/auth/google?month=${encodeURIComponent(
+    window.location.href = `http://localhost:5000/auth/google?month=${encodeURIComponent(
       selectedMonth
     )}`;
   };
