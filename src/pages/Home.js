@@ -1,18 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  ChevronDown,
-  ChevronRight,
-  BookOpen,
-  Code,
-  Brain,
-  Users,
-  Layers,
-  FileText,
-  Map,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, BookOpen, Code, Brain, Users, Layers, FileText, Map, Clock, LogOut, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// Components
+// Import your actual components
 import CourseInfo from "../components/PageSegment/PageFirst";
 import RevisionTable from "../components/PageSegment/Revision";
 import DSAStepByStepPlan from "../components/PageSegment/CodingPlan";
@@ -24,26 +14,20 @@ import DSAStudyPlan from "../components/PageSegment/DSAPlan";
 const Home = () => {
   const [expandedChapters, setExpandedChapters] = useState({});
   const [countdown, setCountdown] = useState(20);
-
   const timeoutRef = useRef(null);
   const countdownIntervalRef = useRef(null);
   const navigate = useNavigate();
 
-  /* =======================
-     LOGOUT
-  ======================= */
+  /* ======================= LOGOUT ======================= */
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
 
-  /* =======================
-     AUTO LOGOUT TIMER
-  ======================= */
+  /* ======================= AUTO LOGOUT TIMER ======================= */
   const resetTimer = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    if (countdownIntervalRef.current)
-      clearInterval(countdownIntervalRef.current);
+    if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
 
     setCountdown(20);
 
@@ -55,15 +39,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const events = [
-      "mousedown",
-      "mousemove",
-      "keypress",
-      "scroll",
-      "touchstart",
-      "click",
-    ];
-
+    const events = ["mousedown", "mousemove", "keypress", "scroll", "touchstart", "click"];
     events.forEach((e) => document.addEventListener(e, resetTimer));
     resetTimer();
 
@@ -74,9 +50,7 @@ const Home = () => {
     };
   }, []);
 
-  /* =======================
-     SECURITY PROTECTION
-  ======================= */
+  /* ======================= SECURITY PROTECTION ======================= */
   useEffect(() => {
     // Disable right click
     const disableRightClick = (e) => e.preventDefault();
@@ -125,105 +99,134 @@ const Home = () => {
     };
   }, []);
 
-  /* =======================
-     DATA
-  ======================= */
+  /* ======================= DATA ======================= */
   const toggleChapter = (id) => {
-    setExpandedChapters((p) => ({ ...p, [id]: !p[id] }));
+    setExpandedChapters((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const chapters = [
-    {
-      id: "c1",
-      title: "Chapter 1: Course Overview",
-      icon: <BookOpen className="w-5 h-5" />,
-      component: <CourseInfo />,
-    },
-    {
-      id: "c2",
-      title: "Chapter 2: Resume + LinkedIn",
-      icon: <FileText className="w-5 h-5" />,
-      component: <RevisionTable />,
-    },
-    {
-      id: "c3",
-      title: "Chapter 3: Beginner DSA Plan",
-      icon: <Code className="w-5 h-5" />,
-      component: <DSAStepByStepPlan />,
-    },
-    {
-      id: "c4",
-      title: "Chapter 4: Pro DSA Plan",
-      icon: <Map className="w-5 h-5" />,
-      component: <DSAStudyPlan />,
-    },
-    {
-      id: "c5",
-      title: "Chapter 5: Interview Prep",
-      icon: <Brain className="w-5 h-5" />,
-      component: <InterviewPrep />,
-    },
-    {
-      id: "c6",
-      title: "Chapter 6: Full Stack + System Design",
-      icon: <Layers className="w-5 h-5" />,
-      component: <FullStackDevelopment />,
-    },
-    {
-      id: "c7",
-      title: "Chapter 7: Resources",
-      icon: <Users className="w-5 h-5" />,
-      component: <InterviewResources />,
-    },
+    { id: "c1", title: "Course Overview", subtitle: "Get started with the fundamentals", icon: BookOpen, component: <CourseInfo />, color: "from-blue-500 to-blue-600" },
+    { id: "c2", title: "Resume + LinkedIn", subtitle: "Build your professional profile", icon: FileText, component: <RevisionTable />, color: "from-purple-500 to-purple-600" },
+    { id: "c3", title: "Beginner DSA Plan", subtitle: "Master data structures step by step", icon: Code, component: <DSAStepByStepPlan />, color: "from-green-500 to-green-600" },
+    { id: "c4", title: "Pro DSA Plan", subtitle: "Advanced algorithms and patterns", icon: Brain, component: <DSAStudyPlan />, color: "from-orange-500 to-orange-600" },
+    { id: "c5", title: "Interview Prep", subtitle: "Ace your technical interviews", icon: Users, component: <InterviewPrep />, color: "from-red-500 to-red-600" },
+    { id: "c6", title: "Full Stack + System Design", subtitle: "Build scalable applications", icon: Layers, component: <FullStackDevelopment />, color: "from-indigo-500 to-indigo-600" },
+    { id: "c7", title: "Resources", subtitle: "Tools and materials for success", icon: Map, component: <InterviewResources />, color: "from-pink-500 to-pink-600" },
   ];
 
-  /* =======================
-     UI
-  ======================= */
+  /* ======================= UI ======================= */
   return (
-    <div className="select-none max-w-8xl mx-auto p-6 min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                Learning Platform
+              </h1>
+              <p className="text-sm text-gray-600 mt-1">Your journey to success starts here</p>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              {/* Session Timer */}
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                countdown < 10 ? 'bg-red-50 text-red-700 animate-pulse' : 'bg-gray-50 text-gray-700'
+              }`}>
+                <Clock className="w-4 h-4" />
+                <span className="text-sm font-medium">{countdown}s</span>
+              </div>
+
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all hover:shadow-lg"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="font-medium">Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Warning Banner */}
       {countdown <= 10 && (
-        <div className="fixed top-4 right-4 bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse">
-          Logging out in {countdown}s due to inactivity
+        <div className="bg-red-500 text-white py-3 px-4 animate-pulse">
+          <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
+            <Shield className="w-5 h-5" />
+            <span className="font-medium">
+              Logging out in {countdown}s due to inactivity
+            </span>
+          </div>
         </div>
       )}
 
-      <h1 className="text-3xl font-bold text-center mb-10">
-        Main Course Navigation
-      </h1>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Course Navigation</h2>
+          <p className="text-gray-600">Explore chapters and track your progress</p>
+        </div>
 
-      <div className="space-y-6">
-        {chapters.map((c) => (
-          <div key={c.id} className="bg-white rounded-lg shadow">
-            <div
-              onClick={() => toggleChapter(c.id)}
-              className="cursor-pointer flex justify-between items-center p-5 bg-blue-600 text-white"
-            >
-              <div className="flex items-center gap-3">
-                {c.icon}
-                <h2 className="text-lg font-semibold">{c.title}</h2>
+        {/* Chapters Grid */}
+        <div className="space-y-4">
+          {chapters.map((chapter, index) => {
+            const Icon = chapter.icon;
+            const isExpanded = expandedChapters[chapter.id];
+            
+            return (
+              <div
+                key={chapter.id}
+                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100"
+              >
+                {/* Chapter Header */}
+                <button
+                  onClick={() => toggleChapter(chapter.id)}
+                  className="w-full px-6 py-5 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${chapter.color} flex items-center justify-center shadow-lg`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {chapter.title}
+                      </h3>
+                      <p className="text-sm text-gray-500">{chapter.subtitle}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
+                      Chapter {index + 1}
+                    </span>
+                    {isExpanded ? (
+                      <ChevronDown className="w-5 h-5 text-gray-400 transition-transform" />
+                    ) : (
+                      <ChevronRight className="w-5 h-5 text-gray-400 transition-transform" />
+                    )}
+                  </div>
+                </button>
+
+                {/* Chapter Content */}
+                {isExpanded && (
+                  <div className="px-6 pb-6 bg-gray-50 border-t border-gray-100">
+                    <div className="mt-4">
+                      {chapter.component}
+                    </div>
+                  </div>
+                )}
               </div>
-              {expandedChapters[c.id] ? <ChevronDown /> : <ChevronRight />}
-            </div>
+            );
+          })}
+        </div>
 
-            {expandedChapters[c.id] && (
-              <div className="p-5 bg-gray-50">{c.component}</div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="text-center mt-12">
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg"
-        >
-          Logout
-        </button>
-        <p className="text-sm text-gray-500 mt-3">
-          Auto logout in {countdown}s
-        </p>
-      </div>
+        {/* Footer Info */}
+        <div className="mt-12 text-center text-sm text-gray-500">
+          <p>🔒 Protected session • Auto-logout enabled • {chapters.length} chapters available</p>
+        </div>
+      </main>
     </div>
   );
 };
