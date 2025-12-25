@@ -181,7 +181,7 @@ const Home = () => {
      UI
   ======================= */
   return (
-    <div className="select-none max-w-7xl mx-auto p-6 min-h-screen bg-slate-50">
+    <div className="select-none max-w-8xl mx-auto p-6 min-h-screen bg-slate-50">
       {countdown <= 10 && (
         <div className="fixed top-4 right-4 bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse">
           Logging out in {countdown}s due to inactivity
