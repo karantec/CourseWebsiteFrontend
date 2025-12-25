@@ -35,7 +35,7 @@ const Dashboard = () => {
             "You are not logged in or session expired. Redirecting to login..."
           );
           // wait briefly so user sees message, then redirect
-          setTimeout(() => (window.location.href = "/login"), 1500);
+          setTimeout(() => (window.location.href = "/"), 1500);
         } else {
           setError("Something went wrong. See console for details.");
         }
