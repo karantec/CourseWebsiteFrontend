@@ -144,7 +144,20 @@ const StudyPlanTable = () => {
     },
     {
       id: 7,
-      topic: "",
+      topic: "Hashing mixed with Prefix/Suffix Binary Search + Two Pointer + SortedSet",
+      subtopic: "",
+      steps: [
+        {
+          title: "Same link",
+          description: "",
+          priority: 1,
+        },
+      ],
+    },
+
+     {
+      id: 8,
+      topic: "Hashing Prefix/Suffix concept over subsequences concept]",
       subtopic: "",
       steps: [
         {
@@ -156,7 +169,7 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 8,
+      id: 9,
       topic: "Hashing Miscellaneous",
       subtopic: "",
       steps: [
@@ -167,8 +180,45 @@ const StudyPlanTable = () => {
         },
       ],
     },
+
+     {
+      id: 10,
+      topic: "Hashing + Contribution Tricks",
+      subtopic: "",
+      steps: [
+        {
+          title: "Same link",
+          description: "",
+          priority: 1,
+        },
+      ],
+    },
     {
-      id: 9,
+      id: 11,
+      topic: "Hashing mixed with Bit Manipulation",
+      subtopic: "",
+      steps: [
+        {
+          title: "Same link",
+          description: "",
+          priority: 1,
+        },
+      ],
+    },
+    {
+      id: 12,
+      topic: "Hashing mixed with Greedy",
+      subtopic: "",
+      steps: [
+        {
+          title: "Same link",
+          description: "",
+          priority: 1,
+        },
+      ],
+    },
+    {
+      id: 13,
       topic: "Two Pointers",
       subtopic: "[Fundamentals Building]",
       steps: [
@@ -188,7 +238,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 10,
+      id: 14,
       topic: "Sliding Window",
 
       steps: [
@@ -209,7 +259,7 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 11,
+      id: 15,
       topic: "implementation+observation",
 
       steps: [
@@ -223,7 +273,7 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 12,
+      id: 16,
       topic: "String",
 
       steps: [
@@ -242,7 +292,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 13,
+      id: 17,
       topic: "Binary Search",
 
       steps: [
@@ -261,7 +311,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 14,
+      id: 18,
       topic: "Linked List",
 
       steps: [
@@ -281,7 +331,7 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 15,
+      id: 19,
       topic: "Array Warm-up",
 
       steps: [
@@ -299,8 +349,28 @@ const StudyPlanTable = () => {
         },
       ],
     },
+
+     {
+      id: 20,
+      topic: "Matrix ",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/spreadsheets/d/1Cbzz94wljkGSHJ3XS0xXvbdLKz0L2yGr/edit?gid=451760203#gid=451760203",
+          priority: 1,
+        },
+      ],
+    },
     {
-      id: 16,
+      id: 21 ,
       topic: "Searching + Sorting",
 
       steps: [
@@ -320,8 +390,8 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 17,
-      topic: "heap",
+      id: 22,
+      topic: "heap(Priority Queue)",
 
       steps: [
         {
@@ -339,7 +409,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 17,
+      id: 23,
       topic: "Greedy",
 
       steps: [
@@ -365,45 +435,40 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 18,
+      id: 24,
       topic: "Stack and Queue",
 
       steps: [
         {
           title: "Link",
           description: "",
-          link: "https://docs.google.com/document/d/1ox7meTB0RfuO7VQ7EUc7prKVimZetas0Y2mn4eF9XxE/edit?tab=t.0",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
           priority: 1,
         },
         {
           title: "Link",
           description: "",
-          link: "https://docs.google.com/document/d/1n6sJngGMtNKCWyl80wj9H79VGb9AhUygjy7sBWpAqnY/edit?tab=t.0",
+          link: "https://docs.google.com/spreadsheets/d/1Cbzz94wljkGSHJ3XS0xXvbdLKz0L2yGr/edit?gid=451760203#gid=451760203",
           priority: 2,
         },
-        {
-          title: "Link",
-          description: "",
-          link: "https://docs.google.com/spreadsheets/d/1Cbzz94wljkGSHJ3XS0xXvbdLKz0L2yGr/edit?gid=451760203#gid=451760203",
-          priority: 3,
-        },
+        
       ],
     },
     {
-      id: 20,
+      id: 25,
       topic: "Recursion and Backtracking",
 
       steps: [
         {
           title: "Link",
           description: "",
-          link: "https://docs.google.com/document/d/1ox7meTB0RfuO7VQ7EUc7prKVimZetas0Y2mn4eF9XxE/edit?tab=t.0",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
           priority: 1,
         },
       ],
     },
     {
-      id: 21,
+      id: 26,
       topic: "Binary Tree",
 
       steps: [
@@ -422,7 +487,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 22,
+      id: 27,
       topic: "Binary Search Tree",
 
       steps: [
@@ -441,14 +506,14 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 23,
+      id: 28,
       topic: "Dynamic Programming",
 
       steps: [
         {
           title: "Link",
           description: "",
-          link: "https://docs.google.com/document/d/1ox7meTB0RfuO7VQ7EUc7prKVimZetas0Y2mn4eF9XxE/edit?tab=t.0",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
           priority: 1,
         },
         {
@@ -466,7 +531,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 24,
+      id: 29,
       topic: "Graph and General Trees",
 
       steps: [
@@ -492,7 +557,7 @@ const StudyPlanTable = () => {
     },
 
     {
-      id: 25,
+      id: 30,
       topic: "Trie",
 
       steps: [
@@ -511,7 +576,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 26,
+      id: 31,
       topic: "Bit Manipulation",
 
       steps: [
@@ -529,9 +594,9 @@ const StudyPlanTable = () => {
         },
       ],
     },
-    {
-      id: 27,
-      topic: "Maths and Number Theory",
+     {
+      id: 32,
+      topic: "Bit Masking DP",
 
       steps: [
         {
@@ -540,10 +605,114 @@ const StudyPlanTable = () => {
           link: "https://docs.google.com/document/d/1ox7meTB0RfuO7VQ7EUc7prKVimZetas0Y2mn4eF9XxE/edit?tab=t.0",
           priority: 1,
         },
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/spreadsheets/d/1Cbzz94wljkGSHJ3XS0xXvbdLKz0L2yGr/edit?gid=451760203#gid=451760203",
+          priority: 2,
+        },
       ],
     },
     {
-      id: 28,
+
+      id: 33,
+      topic: "Maths part-1",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+
+      id: 34,
+      topic: "Segment Tree+Bit",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+
+      id: 35,
+      topic: "MO algorithm",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+
+      id: 36,
+      topic: "Math Part-2",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+
+      id: 37,
+      topic: "Math Part-2",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+
+      id: 38,
+      topic: "SOS DP+Advanced Tree Algorithm",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+
+      id: 39,
+      topic: "Digit Dp",
+
+      steps: [
+        {
+          title: "Link",
+          description: "",
+          link: "https://docs.google.com/document/d/1DXS7BPL06yj8PEHJO86WqDIfM2tLWSsQTkmE7nVRHPw/edit?tab=t.0",
+          priority: 1,
+        },
+      ],
+    },
+    {
+      id: 40,
       topic: "Kumar K interview Sheet",
 
       steps: [
@@ -556,7 +725,7 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 29,
+      id: 41,
       topic: "Contest Course",
 
       steps: [
@@ -569,8 +738,8 @@ const StudyPlanTable = () => {
       ],
     },
     {
-      id: 30,
-      topic: "DSA Questions Topic wise Sheet",
+      id: 42,
+      topic: "DSA Questions To Prepare for interviews",
 
       steps: [
         {
